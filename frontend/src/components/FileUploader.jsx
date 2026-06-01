@@ -1,32 +1,32 @@
-import { useRef, useState } from 'react'
-import { blobToWav } from '../utils/wavEncoder.js'
+import { useRef, useState } from "react";
+import { blobToWav } from "../utils/wavEncoder.js";
 
 export default function FileUploader({ onAudio, disabled }) {
-  const inputRef = useRef(null)
-  const [dragOver, setDragOver] = useState(false)
+  const inputRef = useRef(null);
+  const [dragOver, setDragOver] = useState(false);
 
   const handleFile = async (file) => {
-    if (!file) return
+    if (!file) return;
     try {
-      const wav = await blobToWav(file, 22050)
-      onAudio(wav, file.name)
+      const wav = await blobToWav(file, 22050);
+      onAudio(wav, file.name, file);
     } catch (err) {
-      alert('Could not decode audio: ' + err.message)
+      alert("Could not decode audio: " + err.message);
     }
-  }
+  };
 
   return (
     <div
-      className={'dropzone ' + (dragOver ? 'drag' : '')}
+      className={"dropzone " + (dragOver ? "drag" : "")}
       onDragOver={(e) => {
-        e.preventDefault()
-        setDragOver(true)
+        e.preventDefault();
+        setDragOver(true);
       }}
       onDragLeave={() => setDragOver(false)}
       onDrop={(e) => {
-        e.preventDefault()
-        setDragOver(false)
-        handleFile(e.dataTransfer.files[0])
+        e.preventDefault();
+        setDragOver(false);
+        handleFile(e.dataTransfer.files[0]);
       }}
       onClick={() => !disabled && inputRef.current?.click()}
     >
@@ -40,5 +40,5 @@ export default function FileUploader({ onAudio, disabled }) {
       <p>Drop an audio file here, or click to browse</p>
       <p className="hint">.wav, .mp3, .ogg, .webm, .flac</p>
     </div>
-  )
+  );
 }

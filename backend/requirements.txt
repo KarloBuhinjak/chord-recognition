@@ -1,10 +1,10 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 
-fastapi==0.115.0
-uvicorn[standard]==0.30.6
-python-multipart==0.0.9
-torch==2.4.1+cpu
-numpy==1.26.4
-librosa==0.10.2
-matplotlib==3.9.2
-soundfile==0.12.1
+fastapi==0.136.1
+uvicorn[standard]==0.46.0
+python-multipart==0.0.27
+torch==2.11.0+cpu
+numpy==2.4.4
+librosa==0.11.0
+matplotlib==3.10.9
+soundfile==0.13.1
